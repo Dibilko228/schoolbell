@@ -1,0 +1,8 @@
+{
+  "exe": "c:\\Users\\typic\\Desktop\\Моя прога\\.venv\\Scripts\\python.exe",
+  "version": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]",
+  "import_pygame": "ERR:ModuleNotFoundError(\"No module named 'pygame'\")",
+  "find_spec": "None",
+  "pip_show": "ERROR:CalledProcessError(1, ['c:\\\\Users\\\\typic\\\\Desktop\\\\Моя прога\\\\.venv\\\\Scripts\\\\python.exe', '-m', 'pip', 'show', 'pygame'])",
+  "pip_list": "Package            Version\n------------------ --------\ncertifi            2026.1.4\ncharset-normalizer 3.4.4\ncustomtkinter      5.2.2\ndarkdetect         0.8.0\nidna               3.11\npackaging          26.0\npillow             12.1.0\npip                26.0.1\nrequests           2.32.5\nurllib3            2.6.3\n"
+}

@@ -1,0 +1,83 @@
+{
+  "photo_path": "",
+  "lesson_start_sound_path": "",
+  "lesson_end_sound_path": "",
+  "siren_sound_path": "",
+  "minute_of_silence_sound_path": "",
+  "ALERTS_TOKEN": "",
+  "ALERT_UID": 0,
+  "minute_of_silence_enabled": true,
+  "candle_gif_path": "",
+  "silent_mode": false,
+  "test_mode_on": false,
+  "test_offset_seconds": 0,
+  "entry_lock_enabled": false,
+  "entry_password": "",
+  "shutdown_enabled": false,
+  "shutdown_time": "00:00",
+  "hibernation_enabled": false,
+  "hibernation_time": "00:00",
+  "autostart_enabled": false,
+  "schedule": [
+    {
+      "n": 1,
+      "start": "08:00",
+      "end": "08:40"
+    },
+    {
+      "n": 2,
+      "start": "08:45",
+      "end": "09:25"
+    },
+    {
+      "n": 3,
+      "start": "09:35",
+      "end": "10:15"
+    },
+    {
+      "n": 4,
+      "start": "10:20",
+      "end": "11:00"
+    },
+    {
+      "n": 5,
+      "start": "11:10",
+      "end": "11:50"
+    },
+    {
+      "n": 6,
+      "start": "12:00",
+      "end": "12:40"
+    },
+    {
+      "n": 7,
+      "start": "12:45",
+      "end": "13:25"
+    },
+    {
+      "n": 8,
+      "start": "13:35",
+      "end": "14:15"
+    },
+    {
+      "n": 9,
+      "start": "14:25",
+      "end": "15:05"
+    },
+    {
+      "n": 10,
+      "start": "15:10",
+      "end": "15:50"
+    },
+    {
+      "n": 11,
+      "start": "15:55",
+      "end": "16:35"
+    },
+    {
+      "n": 12,
+      "start": "16:40",
+      "end": "17:20"
+    }
+  ]
+}

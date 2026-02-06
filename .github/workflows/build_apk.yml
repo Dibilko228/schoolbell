@@ -1,0 +1,70 @@
+name: Build Android APK
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Java
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+    
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cython3 build-essential libssl-dev libffi-dev libncurses5-dev libncursesw5-dev libreadline6-dev libdb5.3-dev libgdbm-dev libbz2-dev libexpat1-dev liblzma-dev zlib1g-dev
+        pip install --upgrade pip
+        pip install buildozer cython pyjnius
+    
+    - name: Setup Android SDK/NDK
+      run: |
+        mkdir -p ~/android/sdk
+        cd ~/android/sdk
+        wget -q https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip
+        unzip -q commandlinetools-linux-9477386_latest.zip
+        rm commandlinetools-linux-9477386_latest.zip
+        mkdir -p cmdline-tools/latest
+        mv cmdline-tools/* cmdline-tools/latest/
+        export PATH=$PATH:~/android/sdk/cmdline-tools/latest/bin
+        yes | sdkmanager --sdk_root=~/android/sdk "platforms;android-33" "ndk;25.1.8937393" "build-tools;33.0.0"
+      env:
+        ANDROID_HOME: ~/android/sdk
+    
+    - name: Build APK with Buildozer
+      run: |
+        cd android_port
+        buildozer -v android debug
+      env:
+        ANDROID_HOME: ~/android/sdk
+    
+    - name: Upload APK artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: schoolbell-apk
+        path: android_port/bin/*.apk
+        retention-days: 30
+    
+    - name: Create Release
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: softprops/action-gh-release@v1
+      with:
+        files: android_port/bin/*.apk
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

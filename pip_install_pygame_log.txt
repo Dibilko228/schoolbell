@@ -1,0 +1,5 @@
+{
+  "returncode": 1,
+  "output": "",
+  "err": "CalledProcessError(1, ['c:\\\\Users\\\\typic\\\\Desktop\\\\Моя прога\\\\.venv\\\\Scripts\\\\python.exe', '-m', 'pip', 'install', 'pygame', '--verbose'])"
+}
