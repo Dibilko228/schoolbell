@@ -34,14 +34,17 @@ jobs:
         pip install buildozer cython pyjnius
     
     - name: Setup Android SDK/NDK
+      shell: bash
       run: |
+        set -euo pipefail
         mkdir -p ~/android/sdk
         cd ~/android/sdk
         wget -q https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip
         unzip -q commandlinetools-linux-9477386_latest.zip
         rm commandlinetools-linux-9477386_latest.zip
         mkdir -p cmdline-tools/latest
-        mv cmdline-tools/* cmdline-tools/latest/
+        # Move all extracted contents except the 'latest' directory itself.
+        find cmdline-tools -mindepth 1 -maxdepth 1 ! -name latest -exec mv -t cmdline-tools/latest {} +
         export PATH=$PATH:~/android/sdk/cmdline-tools/latest/bin
         yes | sdkmanager --sdk_root=~/android/sdk "platforms;android-33" "ndk;25.1.8937393" "build-tools;33.0.0"
       env:
